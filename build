@@ -1,16 +1,16 @@
 #!/bin/bash
 
-make -C dmenu_clean
-make -C dmenu_clean install
-make -C dmenu_clean clean
-rm -f dmenu_clean/config.h
+make -C dmenu_cl
+make -C dmenu_cl install
+make -C dmenu_cl clean
+rm -f dmenu_cl/config.h
 
-make -C dwm_clean
-make -C dwm_clean install
-make -C dwm_clean clean
-rm -f dwm_clean/config.h
+make -C dwm_cl
+make -C dwm_cl install
+make -C dwm_cl clean
+rm -f dwm_cl/config.h
 
-make -C st_mod
-make -C st_mod install
-make -C st_mod clean
-rm -f st_mod/config.h
+make -C st_md
+make -C st_md install
+make -C st_md clean
+rm -f st_md/config.h
