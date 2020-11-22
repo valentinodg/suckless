@@ -1,16 +1,5 @@
 #!/bin/bash
 
-. /etc/os-release
-
-case $ID in
-    void)
-        ./void_install
-        ;;
-    artix)
-        ./artix_install
-        ;;
-esac
-
 make -C dmenu_clean
 make -C dmenu_clean install
 make -C dmenu_clean clean
