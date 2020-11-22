@@ -1,0 +1,27 @@
+#!/bin/bash
+
+. /etc/os-release
+
+case $ID in
+    void)
+        ./void_install
+        ;;
+    artix)
+        ./artix_install
+        ;;
+esac
+
+make -C dmenu_clean
+make -C dmenu_clean install
+make -C dmenu_clean clean
+rm -f dmenu_clean/config.h
+
+make -C dwm_clean
+make -C dwm_clean install
+make -C dwm_clean clean
+rm -f dwm_clean/config.h
+
+make -C st_mod
+make -C st_mod install
+make -C st_mod clean
+rm -f st_mod/config.h
