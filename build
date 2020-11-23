@@ -13,13 +13,13 @@ make -C dmenu_cl install
 make -C dmenu_cl clean
 rm -f dmenu_cl/config.h
 
-MSGTXT "[make] (compile, install and clean dmenu)"
+MSGTXT "[make] (compile, install and clean dwm)"
 make -C dwm_cl
 make -C dwm_cl install
 make -C dwm_cl clean
 rm -f dwm_cl/config.h
 
-MSGTXT "[make] (compile, install and clean dmenu)"
+MSGTXT "[make] (compile, install and clean st)"
 make -C st_md
 make -C st_md install
 make -C st_md clean
