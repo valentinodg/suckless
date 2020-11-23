@@ -1,15 +1,25 @@
 #!/bin/bash
 
+function MSGTXT()
+{
+    tput setaf 6
+    echo $1
+    tput sgr0
+}
+
+MSGTXT "[make] (compile, install and clean dmenu)"
 make -C dmenu_cl
 make -C dmenu_cl install
 make -C dmenu_cl clean
 rm -f dmenu_cl/config.h
 
+MSGTXT "[make] (compile, install and clean dmenu)"
 make -C dwm_cl
 make -C dwm_cl install
 make -C dwm_cl clean
 rm -f dwm_cl/config.h
 
+MSGTXT "[make] (compile, install and clean dmenu)"
 make -C st_md
 make -C st_md install
 make -C st_md clean
