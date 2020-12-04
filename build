@@ -8,16 +8,16 @@ function MSGTXT()
 }
 
 MSGTXT "[make] (compile, install and clean dmenu)"
-make -C dmenu_cl
-sudo make -C dmenu_cl install
-sudo make -C dmenu_cl clean
-rm -f dmenu_cl/config.h
+make -C dmenu_md
+sudo make -C dmenu_md install
+sudo make -C dmenu_md clean
+rm -f dmenu_md/config.h
 
 MSGTXT "[make] (compile, install and clean dwm)"
-make -C dwm_cl
-sudo make -C dwm_cl install
-sudo make -C dwm_cl clean
-rm -f dwm_cl/config.h
+make -C dwm_md
+sudo make -C dwm_md install
+sudo make -C dwm_md clean
+rm -f dwm_md/config.h
 
 MSGTXT "[make] (compile, install and clean st)"
 make -C st_md
