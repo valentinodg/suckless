@@ -2,33 +2,58 @@
 
 OS = $(shell uname -s)
 
+ifndef BIN_PREFIX
+	BIN_PREFIX = ${HOME}/.local/bin
+endif
+
+ifndef DWM_PREFIX
+	DWM_PREFIX = dwm_md
+endif
+ifndef DMENU_PREFIX
+	DMENU_PREFIX = dmenu_md
+endif
+ifndef ST_PREFIX
+	ST_PREFIX = st_md
+endif
+
 install:
-	@echo "[make] (compile, install and clean dmenu)"
-	make -C dmenu_md
-	sudo make -C dmenu_md install
-	sudo make -C dmenu_md clean
-	rm -f dmenu_md/config.h
+	echo "[ MAKE ] (compile, install and clean dmenu)"
+	make -C $(DMENU_PREFIX)
+	sudo make -C $(DMENU_PREFIX) install
+	sudo make -C $(DMENU_PREFIX) clean
+	rm -f $(DMENU_PREFIX)/config.h
 
-	@echo "[make] (compile, install and clean dwm)"
-	make -C dwm_md
-	sudo make -C dwm_md install
-	sudo make -C dwm_md clean
-	rm -f dwm_md/config.h
+	echo "[ MAKE ] (compile, install and clean dwm)"
+	make -C $(DWM_PREFIX)
+	sudo make -C $(DWM_PREFIX) install
+	sudo make -C $(DWM_PREFIX) clean
+	rm -f $(DWM_PREFIX)/config.h
 
-	@echo "[make] (compile, install and clean st)"
-	make -C st_md
-	sudo make -C st_md install
-	sudo make -C st_md clean
-	rm -f st_md/config.h
+	echo "[ MAKE ] (compile, install and clean st)"
+	make -C $(ST_PREFIX)
+	sudo make -C $(ST_PREFIX) install
+	sudo make -C $(ST_PREFIX) clean
+	rm -f $(ST_PREFIX)/config.h
+
+	echo "[ CHECK ] exist | mkdir -> $(BIN_PREFIX)"
+	if [ ! -d "$(BIN_PREFIX)" ]; then mkdir -p "$(BIN_PREFIX)"; fi
+	echo "[ COPY ] files -> $(BIN_PREFIX)"
+	for file in bin/*; do \
+		cp -f $$file $(BIN_PREFIX); \
+		chmod 755 $(BIN_PREFIX)/$$(basename $(notdir $$file)); \
+	done
 
 uninstall:
-	@echo "[make] (uninstall dmenu)"
-	sudo make -C dmenu_md uninstall
+	echo "[ MAKE ] (uninstall dmenu)"
+	sudo make -C $(DMENU_PREFIX) uninstall
 
-	@echo "[make] (uninstall dwm)"
-	sudo make -C dwm_md uninstall
+	echo "[ MAKE ] (uninstall dwm)"
+	sudo make -C $(DWM_PREFIX) uninstall
 
-	@echo "[make] (uninstall st)"
-	sudo make -C st_md uninstall
+	echo "[ MAKE ] (uninstall st)"
+	sudo make -C $(ST_PREFIX) uninstall
+
+	echo "[ REMOVE ] files <- $(BIN_PREFIX)"
+	for file in bin/*; do rm -f $(BIN_PREFIX)/$$(basename $(notdir $$file)); done
 
 .PHONY: install uninstall
