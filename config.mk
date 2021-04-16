@@ -5,6 +5,8 @@ ifeq ($(ID), void)
 INSTALL_CMD = sudo xbps-install -y
 INSTALL_PKG = base-devel \
 			  bc \
+			  xorg-minimal \
+			  xinit \
 			  setxkbmap \
 			  xset \
 			  xsetroot \
