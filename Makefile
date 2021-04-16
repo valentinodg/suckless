@@ -1,22 +1,14 @@
 .POSIX:
 
-OS = $(shell uname -s)
+include config.mk
 
-ifndef BIN_PREFIX
-	BIN_PREFIX = ${HOME}/.local/bin
-endif
-
-ifndef DWM_PREFIX
-	DWM_PREFIX = dwm_md
-endif
-ifndef DMENU_PREFIX
-	DMENU_PREFIX = dmenu_md
-endif
-ifndef ST_PREFIX
-	ST_PREFIX = st_md
-endif
+DEFAULT := build
+build: | install compile
 
 install:
+	$(INSTALL_CMD) $(INSTALL_PKG)
+
+compile:
 	echo "[ MAKE ] (compile, install and clean dmenu)"
 	make -C $(DMENU_PREFIX)
 	sudo make -C $(DMENU_PREFIX) install
