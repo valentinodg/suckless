@@ -48,4 +48,4 @@ uninstall:
 	echo "[ REMOVE ] files <- $(BIN_PREFIX)"
 	for file in bin/*; do rm -f $(BIN_PREFIX)/$$(basename $(notdir $$file)); done
 
-.PHONY: install uninstall
+.PHONY: install compile uninstall
