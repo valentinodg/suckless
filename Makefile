@@ -10,18 +10,21 @@ install:
 
 compile:
 	echo "[ MAKE ] (compile, install and clean dmenu)"
+	rm -f $(DMENU_PREFIX)/config.h
 	make -C $(DMENU_PREFIX)
 	sudo make -C $(DMENU_PREFIX) install
 	sudo make -C $(DMENU_PREFIX) clean
 	rm -f $(DMENU_PREFIX)/config.h
 
 	echo "[ MAKE ] (compile, install and clean dwm)"
+	rm -f $(DWM_PREFIX)/config.h
 	make -C $(DWM_PREFIX)
 	sudo make -C $(DWM_PREFIX) install
 	sudo make -C $(DWM_PREFIX) clean
 	rm -f $(DWM_PREFIX)/config.h
 
 	echo "[ MAKE ] (compile, install and clean st)"
+	rm -f $(ST_PREFIX)/config.h
 	make -C $(ST_PREFIX)
 	sudo make -C $(ST_PREFIX) install
 	sudo make -C $(ST_PREFIX) clean
