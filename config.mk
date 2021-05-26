@@ -1,5 +1,6 @@
 OS = $(shell uname -s)
-ID = $(shell grep -w 'ID=' /etc/os-release | sed 's/ID=//' | tr -d '"')
+ID = $(shell grep -w 'ID' /etc/os-release | cut -d'=' -f2 | tr -d '"')
+# ID = $(shell grep -w 'ID=' /etc/os-release | sed 's/ID=//' | tr -d '"')
 
 ifeq ($(ID), void)
 INSTALL_CMD = sudo xbps-install -y

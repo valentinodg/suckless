@@ -2,12 +2,24 @@
 
 include config.mk
 
-DEFAULT := build
-build: | install compile
+.SILENT: help
+.PHONY: help # print this help text
+help:
+	@grep '^.PHONY: .* #' $(firstword $(MAKEFILE_LIST)) |\
+		sed 's/\.PHONY: \(.*\) # \(.*\)/\1 # \2/' |\
+		awk 'BEGIN {FS = "#"}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' 
 
+
+.PHONY: build # ----- (combo) build all
+
+build: install compile
+
+.SILENT: install
+.PHONY: install # install dependencies
 install:
 	$(INSTALL_CMD) $(INSTALL_PKG)
 
+.PHONY: compile # compile all
 compile:
 	echo "[ MAKE ] (compile, install and clean dmenu)"
 	rm -f $(DMENU_PREFIX)/config.h
@@ -38,6 +50,7 @@ compile:
 		chmod 755 $(BIN_PREFIX)/$$(basename $(notdir $$file)); \
 	done
 
+.PHONY: uninstall # uninstall all
 uninstall:
 	echo "[ MAKE ] (uninstall dmenu)"
 	sudo make -C $(DMENU_PREFIX) uninstall
@@ -50,5 +63,3 @@ uninstall:
 
 	echo "[ REMOVE ] files <- $(BIN_PREFIX)"
 	for file in bin/*; do rm -f $(BIN_PREFIX)/$$(basename $(notdir $$file)); done
-
-.PHONY: install compile uninstall
